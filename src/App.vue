@@ -1,21 +1,21 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <Login />
+    <!-- <Login /> -->
+    <router-view />
     <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
   </div>
 </template>
 
 <script>
 // import HelloWorld from './components/HelloWorld.vue';
-import Login from './views/pages/login.vue';
+// import Login from './views/pages/login.vue';
 
 export default {
   name: 'App',
-  components: {
-    // HelloWorld
-    Login
-  }
+  // components: {
+  //   // HelloWorld
+  //   Login
+  // }
 }
 </script>
 
@@ -26,6 +26,7 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  /* margin-top: 60px; */
+  height: 100%;
 }
 </style>

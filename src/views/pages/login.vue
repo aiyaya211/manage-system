@@ -1,27 +1,28 @@
 <template>
     <div class="container">
         <div class="box">
+            <div>哎呀呀的后台管理系统</div>
             <a-form-model layout="vertical" :model="formInline" @submit="handleSubmit" @submit.native.prevent :label-col="{span: 3, offset: 12}" >
-            <a-form-model-item>
-            <a-input v-model="formInline.user" placeholder="Username">
-                <a-icon slot="prefix" type="user" style="color:rgba(0,0,0,.25)" />
-            </a-input>
-            </a-form-model-item>
-            <a-form-model-item>
-            <a-input v-model="formInline.password" type="password" placeholder="Password">
-                <a-icon slot="prefix" type="lock" style="color:rgba(0,0,0,.25)" />
-            </a-input>
-            </a-form-model-item>
-            <a-form-model-item>
-            <a-button
-                type="primary"
-                html-type="submit"
-                :disabled="formInline.user === '' || formInline.password === ''"
-            >
-                Log in
-            </a-button>
-            </a-form-model-item>
-        </a-form-model>
+                <a-form-model-item>
+                    <a-input v-model="formInline.user" placeholder="Username">
+                        <a-icon slot="prefix" type="user" style="color:rgba(0,0,0,.25)" />
+                    </a-input>
+                </a-form-model-item>
+                <a-form-model-item>
+                    <a-input v-model="formInline.password" type="password" placeholder="Password">
+                        <a-icon slot="prefix" type="lock" style="color:rgba(0,0,0,.25)" />
+                    </a-input>
+                </a-form-model-item>
+                <a-form-model-item>
+                    <a-button
+                        type="primary"
+                        html-type="submit"
+                        :disabled="formInline.user === '' || formInline.password === ''"
+                    >
+                        登录
+                    </a-button>
+                </a-form-model-item>
+            </a-form-model>
         </div>
     </div>
 </template>
@@ -37,8 +38,13 @@ export default {
         }
     },
     methods: {
-        handleSubmit() {
-            console.log('登录')
+        async handleSubmit() {
+            console.log('登录');
+            let data = await this.$axios.post('/login', {
+                name: 'aiyaya'
+            });
+            console.log(data);
+            this.router.push({ path: 'home' });
         }
     }
 }
@@ -48,6 +54,7 @@ export default {
     display: flex;
     align-items: center;
     justify-content: center;
+    height: 100%;
 }
 .box {
     width: 400px;
