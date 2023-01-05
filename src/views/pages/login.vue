@@ -40,11 +40,16 @@ export default {
     methods: {
         async handleSubmit() {
             console.log('登录');
-            let data = await this.$axios.post('/login', {
-                name: 'aiyaya'
+            await this.$axios.post('/login', {
+                name: this.formInline.user,
+            }).then((res) => {
+                console.log(res);
+                this.$message.success('登录成功');
+                this.router.push({ path: 'home' });
+            }).catch((err) => {
+                console.log(err)
+                this.$message.error('账号名或者密码错误');
             });
-            console.log(data);
-            this.router.push({ path: 'home' });
         }
     }
 }
