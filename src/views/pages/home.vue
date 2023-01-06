@@ -4,7 +4,8 @@
         <a-layout-header>
             <div class="header">
                 <div style="color: #fff;">哎呀呀的管理系统</div>
-                <a-button >退出</a-button>
+                <!-- <div></div> -->
+                <a-button @click="exit">退出</a-button>
             </div>
         </a-layout-header>
         <a-layout>
@@ -14,25 +15,28 @@
                 style="width: 256px;height: 100%;"
                 theme="dark"
                 mode="inline">
-                    <a-sub-menu key="sub1">
-                        <template #title>Navigation One</template>
-                        <a-menu-item-group key="g1">
+                    <template v-for="item in menus" >
+                        <a-menu-item :key="item.id" v-if="!item.children">
+                            <!-- <template #icon>
+                            <PieChartOutlined />
+                            </template> -->
+                            <span>{{ item.name }}</span>
+                        </a-menu-item>
+                        <a-sub-menu :key="item.id" v-else>
                             <template #icon>
+                                <AppstoreOutlined />
                             </template>
-                            <template #title>Item 1</template>
-                            <a-menu-item key="1">Option 1</a-menu-item>
-                            <a-menu-item key="2">Option 2</a-menu-item>
-                        </a-menu-item-group>
-                        <a-menu-item-group key="g2" title="Item 2">
-                            <a-menu-item key="3">Option 3</a-menu-item>
-                            <a-menu-item key="4">Option 4</a-menu-item>
-                        </a-menu-item-group>
-                    </a-sub-menu>
+                        <template #title>{{ item.name }}</template>
+                            <a-menu-item v-for="child in item.children" :key="child.id">{{ child.name }}</a-menu-item>
+                            <!-- <a-menu-item key="4">Option 4</a-menu-item> -->
+                        </a-sub-menu>
+                    </template>
                 </a-menu>
             </a-layout-sider>
             <!-- 内容部分 -->
             <a-layout-content>
-                Content
+                <!-- 路由内容展示 -->
+                <router-view />
             </a-layout-content>
             
         </a-layout>
@@ -43,7 +47,26 @@
 export default {
     data() {
         return {
-
+            menus: [{
+                id: 101,
+                name: '菜单1'
+            }, {
+                id: 102,
+                name: '菜单2',
+                children: [{
+                    id: 1021,
+                    name: '子菜单1',
+                }, {
+                    id: 1022,
+                    name: '子菜单2',
+                }]
+            }]
+        }
+    },
+    methods: {
+        exit() {
+            // 退出登录
+            this.router.push('/');
         }
     }
 }

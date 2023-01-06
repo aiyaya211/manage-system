@@ -17,9 +17,21 @@ export default new Router({
         }, {
             path: '/home',
             name: 'home',
+            redirect: '/welcome',
             component: () => import(
                  /* webpackChunkName: "home" */ '../views/pages/home.vue'
             ),
-        }
+            children: [
+                {path: '/welcome', component: () => import(
+                    /* webpackChunkName: "welcome" */ '../components/welcome.vue'
+                )}
+            ]
+        }, {
+            // 会匹配所有路径
+            path: '*',
+            component: () => import(
+                /* webpackChunkName: "404" */ '../views/pages/notFound.vue'
+            )
+          }
     ]
 })

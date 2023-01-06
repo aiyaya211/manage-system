@@ -1,8 +1,7 @@
 <template>
   <div id="app">
-    <!-- <Login /> -->
+    <!-- 路由展示的位置 -->
     <router-view />
-    <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
   </div>
 </template>
 

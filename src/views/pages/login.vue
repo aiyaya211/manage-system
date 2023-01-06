@@ -1,7 +1,6 @@
 <template>
     <div class="container">
         <div class="box">
-            <div>哎呀呀的后台管理系统</div>
             <a-form-model layout="vertical" :model="formInline" @submit="handleSubmit" @submit.native.prevent :label-col="{span: 3, offset: 12}" >
                 <a-form-model-item>
                     <a-input v-model="formInline.user" placeholder="Username">
@@ -60,9 +59,14 @@ export default {
     align-items: center;
     justify-content: center;
     height: 100%;
+    background-image: url(https://aiyaya122.oss-cn-hangzhou.aliyuncs.com/background.png);
 }
 .box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 400px;
     height: 300px;
+    background: #fff;
 }
 </style>
