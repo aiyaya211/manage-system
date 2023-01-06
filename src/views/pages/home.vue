@@ -15,19 +15,19 @@
                 style="width: 256px;height: 100%;"
                 theme="dark"
                 mode="inline">
-                    <template v-for="item in menus" >
+                    <template v-for="item in rightList" >
                         <a-menu-item :key="item.id" v-if="!item.children">
                             <!-- <template #icon>
                             <PieChartOutlined />
                             </template> -->
-                            <span>{{ item.name }}</span>
+                            <span>{{ item.authName }}</span>
                         </a-menu-item>
                         <a-sub-menu :key="item.id" v-else>
                             <template #icon>
                                 <AppstoreOutlined />
                             </template>
-                        <template #title>{{ item.name }}</template>
-                            <a-menu-item v-for="child in item.children" :key="child.id">{{ child.name }}</a-menu-item>
+                        <template #title>{{ item.authName }}</template>
+                            <a-menu-item v-for="child in item.children" :key="child.id">{{ child.authName }}</a-menu-item>
                             <!-- <a-menu-item key="4">Option 4</a-menu-item> -->
                         </a-sub-menu>
                     </template>
@@ -44,24 +44,22 @@
     </a-layout>
 </template>
 <script>
+import { mapState } from 'vuex';
+
 export default {
     data() {
         return {
             menus: [{
-                id: 101,
-                name: '菜单1'
-            }, {
-                id: 102,
-                name: '菜单2',
-                children: [{
-                    id: 1021,
-                    name: '子菜单1',
-                }, {
-                    id: 1022,
-                    name: '子菜单2',
-                }]
-            }]
+                authName: '菜单1',
+                id: 1
+            }],
         }
+    },
+    computed: {
+        ...mapState(['rightList'])
+    },
+    created() {
+        this.menus = this.rightList;
     },
     methods: {
         exit() {

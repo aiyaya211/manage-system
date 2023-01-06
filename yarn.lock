@@ -8862,6 +8862,11 @@
     "@vue/compiler-sfc" "2.7.14"
     "csstype" "^3.1.0"
 
+"vuex@^3.0.1":
+  "integrity" "sha512-wLoqz0B7DSZtgbWL1ShIBBCjv22GV5U+vcBFox658g6V0s4wZV9P4YjCNyoHSyIBpj1f29JBoNQIqD82cR4O3w=="
+  "resolved" "https://registry.npmjs.org/vuex/-/vuex-3.0.1.tgz"
+  "version" "3.0.1"
+
 "warning@^4.0.0":
   "integrity" "sha512-rpJyN222KWIvHJ/F53XSZv0Zl/accqHR8et1kpaMTD/fLCRxtV8iX8czMzY7sVZupTI3zcUTg8eycS2kNF9l6w=="
   "resolved" "https://registry.npmjs.org/warning/-/warning-4.0.3.tgz"

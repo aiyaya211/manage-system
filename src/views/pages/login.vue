@@ -26,8 +26,13 @@
     </div>
 </template>
 <script>
+import { mapState } from 'vuex';
+
 export default {
     name: 'login',
+    computed: {
+        ...mapState(['rightList'])
+    },
     data() {
         return {
             formInline: {
@@ -41,10 +46,13 @@ export default {
             console.log('登录');
             await this.$axios.post('/login', {
                 name: this.formInline.user,
+                password: this.formInline.password,
             }).then((res) => {
                 console.log(res);
                 this.$message.success('登录成功');
                 this.router.push({ path: 'home' });
+                this.$store.commit('setRightList', res.data.rights)
+                console.log(this.$store)
             }).catch((err) => {
                 console.log(err)
                 this.$message.error('账号名或者密码错误');
