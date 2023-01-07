@@ -8,6 +8,7 @@ Mock.mock('/login', 'post', function({body}) {
             username: 'aiyaya',
             status: 200,
             message: 'success',
+            token: 'authorization-12345678', // token模拟
             rights: [{
                 id: 101,
                 authName: "用户管理",

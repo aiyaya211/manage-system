@@ -4,8 +4,20 @@
         <a-layout-header>
             <div class="header">
                 <div style="color: #fff;">哎呀呀的管理系统</div>
-                <!-- <div></div> -->
-                <a-button @click="exit">退出</a-button>
+                <div>{{ userName }}</div>
+                <a-menu mode="horizontal" theme="dark">
+                    <a-sub-menu>
+                        <span slot="title">
+                            <a-icon />欢迎你，{{ userName }}
+                        </span>
+                        <a-menu-item-group >
+                            <a-menu-item key="setting:1">
+                                <span @click="exit">退出</span>
+                            </a-menu-item>
+                        </a-menu-item-group>
+                    </a-sub-menu>
+                </a-menu>
+                <!-- <a-button @click="exit">退出</a-button> -->
             </div>
         </a-layout-header>
         <a-layout>
@@ -15,7 +27,7 @@
                 style="width: 256px;height: 100%;"
                 theme="dark"
                 mode="inline">
-                    <template v-for="item in rightList" >
+                    <template v-for="item in menus" >
                         <a-menu-item :key="item.id" v-if="!item.children">
                             <!-- <template #icon>
                             <PieChartOutlined />
@@ -49,14 +61,11 @@ import { mapState } from 'vuex';
 export default {
     data() {
         return {
-            menus: [{
-                authName: '菜单1',
-                id: 1
-            }],
+            menus: [],
         }
     },
     computed: {
-        ...mapState(['rightList'])
+        ...mapState(['rightList', 'userName'])
     },
     created() {
         this.menus = this.rightList;

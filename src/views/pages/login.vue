@@ -51,7 +51,8 @@ export default {
                 console.log(res);
                 this.$message.success('登录成功');
                 this.router.push({ path: 'home' });
-                this.$store.commit('setRightList', res.data.rights)
+                this.$store.commit('setRightList', res.data.rights);
+                this.$store.commit('setUserName', res.data.username );
                 console.log(this.$store)
             }).catch((err) => {
                 console.log(err)
