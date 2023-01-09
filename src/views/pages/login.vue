@@ -53,6 +53,8 @@ export default {
                 this.router.push({ path: 'home' });
                 this.$store.commit('setRightList', res.data.rights);
                 this.$store.commit('setUserName', res.data.username );
+                // 本地存储token
+                sessionStorage.setItem('token', res.data.token);
                 console.log(this.$store)
             }).catch((err) => {
                 console.log(err)

@@ -4,7 +4,6 @@
         <a-layout-header>
             <div class="header">
                 <div style="color: #fff;">哎呀呀的管理系统</div>
-                <div>{{ userName }}</div>
                 <a-menu mode="horizontal" theme="dark">
                     <a-sub-menu>
                         <span slot="title">
@@ -29,17 +28,20 @@
                 mode="inline">
                     <template v-for="item in menus" >
                         <a-menu-item :key="item.id" v-if="!item.children">
-                            <!-- <template #icon>
-                            <PieChartOutlined />
-                            </template> -->
-                            <span>{{ item.authName }}</span>
+                            <router-link :to="item.path">
+                                {{ item.authName }}
+                            </router-link>
                         </a-menu-item>
                         <a-sub-menu :key="item.id" v-else>
                             <template #icon>
                                 <AppstoreOutlined />
                             </template>
                         <template #title>{{ item.authName }}</template>
-                            <a-menu-item v-for="child in item.children" :key="child.id">{{ child.authName }}</a-menu-item>
+                            <a-menu-item v-for="child in item.children" :key="child.id">
+                                <router-link :to="child.path">
+                                    {{ child.authName }}
+                                </router-link>
+                            </a-menu-item>
                             <!-- <a-menu-item key="4">Option 4</a-menu-item> -->
                         </a-sub-menu>
                     </template>
@@ -72,8 +74,23 @@ export default {
     },
     methods: {
         exit() {
+            console.log('退出')
+            // 清空sessionstroage
+            sessionStorage.clear();
             // 退出登录
+            // 跳转到首页
             this.router.push('/');
+            // 当前页面刷新，清除vuex中的数据
+            window.location.reload();
+        },
+        // 菜单切换
+        handelClick(item) {
+            if (item.key !== this.$route.path) {
+                this.$router.push(item.key)
+        //console.log(this.$route.path)
+        //console.log(item)
+            }
+            // console.log('handelClick')
         }
     }
 }

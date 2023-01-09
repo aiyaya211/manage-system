@@ -3,7 +3,8 @@ import Router from 'vue-router';
 
 Vue.use(Router);
 
-export default new Router({
+
+const router = new Router({
     mode: 'hash',
     routes: [{ 
             path: '/', 
@@ -22,9 +23,15 @@ export default new Router({
                  /* webpackChunkName: "home" */ '../views/pages/home.vue'
             ),
             children: [
-                {path: '/welcome', component: () => import(
-                    /* webpackChunkName: "welcome" */ '../components/welcome.vue'
-                )}
+                {
+                    path: '/welcome', component: () => import(
+                        /* webpackChunkName: "welcome" */ '../components/welcome.vue'
+                    )
+                }, {
+                    path: '/users', component: () => import(
+                        /* webpackChunkName: "userlist" */ '../components/userList.vue'
+                    )
+                }
             ]
         }, {
             // 会匹配所有路径
@@ -34,4 +41,28 @@ export default new Router({
             )
           }
     ]
-})
+});
+// 路由导航守卫
+router.beforeEach((to, from, next) => {
+    console.log(to)
+    console.log(from)
+    console.log(next)
+    // 判断下一步的路径是哪里
+    // 如果是登录则下一步
+    if (to.path === '/login' || to.path === '/') {
+        next();
+    } else {
+        const token = sessionStorage.getItem('token');
+        // 判断是否登录过 token
+        console.log(token)
+        if (token) {
+            next();
+        } else {
+            // 没有登录过就回到登录页面
+            // this.$message.warning('请先登录');
+            next('/login')
+        }
+    }
+});
+
+export default router;
