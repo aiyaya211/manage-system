@@ -25,7 +25,8 @@
                 <a-menu
                 style="width: 256px;height: 100%;"
                 theme="dark"
-                mode="inline">
+                mode="inline"
+                >
                     <template v-for="item in menus" >
                         <a-menu-item :key="item.id" v-if="!item.children">
                             <router-link :to="item.path">
@@ -64,6 +65,7 @@ export default {
     data() {
         return {
             menus: [],
+            selectedKeys: ['/welcome'],
         }
     },
     computed: {

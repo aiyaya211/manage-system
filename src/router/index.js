@@ -1,7 +1,43 @@
 import Vue from 'vue';
 import Router from 'vue-router';
+import store from '@/store/index.js'
 
 Vue.use(Router);
+
+// 动态路由
+const usersRule = {
+    path: '/users', 
+    component: () => import(
+        /* webpackChunkName: "userlist" */ '../components/userList.vue'
+    )
+};
+const rolesRule =  {
+    path: '/roles', 
+    component: () => import(
+        /* webpackChunkName: "userlist" */ '../components/rolesList.vue'
+    )
+};
+const productionsRule = {
+    path: '/productions', 
+    component: () => import(
+        /* webpackChunkName: "userlist" */ '../components/productionsList.vue'
+    ) 
+};
+const productionCatesRule = {
+    path: '/productionCates', 
+    component: () => import(
+        /* webpackChunkName: "userlist" */ '../components/productionCates.vue'
+    ) 
+};
+// 和权限数据生成对应关系 权限 -> rule
+const rightMap = {
+    '/users': usersRule,
+    '/roles': rolesRule,
+    '/productions': productionsRule,
+    '/productionCates': productionCatesRule
+};
+console.log(rightMap)
+
 
 
 const router = new Router({
@@ -24,12 +60,9 @@ const router = new Router({
             ),
             children: [
                 {
-                    path: '/welcome', component: () => import(
+                    path: '/welcome', 
+                    component: () => import(
                         /* webpackChunkName: "welcome" */ '../components/welcome.vue'
-                    )
-                }, {
-                    path: '/users', component: () => import(
-                        /* webpackChunkName: "userlist" */ '../components/userList.vue'
                     )
                 }
             ]
@@ -64,5 +97,26 @@ router.beforeEach((to, from, next) => {
         }
     }
 });
+
+export function initRouter() {
+    console.log(router);
+    // 处理home下面的子路由
+    // 拿到当前的路由组信息
+    const currentRoute = router.options.routes; // 修改home下的子路由
+    // 修改children
+    const rightList = store.state.rightList;
+    
+    rightList.forEach((item) => {
+        if(item.children) {
+            item.children.forEach(childItem => {
+                console.log(childItem)
+                let temp = rightMap[childItem.path];
+                currentRoute[2].children.push(temp)
+            })
+        }
+
+    })
+    router.addRoutes(currentRoute)
+}
 
 export default router;

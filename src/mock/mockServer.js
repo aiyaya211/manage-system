@@ -12,7 +12,7 @@ Mock.mock('/login', 'post', function({body}) {
             message: 'success',
             token: 'authorization-12345678', // token模拟
             rights: [{
-                id: 101,
+                id: 100,
                 authName: "我的首页",
                 path: '/home',
             }, {
@@ -55,6 +55,10 @@ Mock.mock('/login', 'post', function({body}) {
             message: 'success',
             token: 'authorization-987654321', // token模拟
             rights: [{
+                id: 100,
+                authName: "我的首页",
+                path: '/home',
+            },  {
                 id: 101,
                 authName: "用户管理",
                 path: '/manage',

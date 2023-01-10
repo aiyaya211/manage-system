@@ -27,6 +27,7 @@
 </template>
 <script>
 import { mapState } from 'vuex';
+import { initRouter } from '@/router/index.js'
 
 export default {
     name: 'login',
@@ -50,6 +51,8 @@ export default {
             }).then((res) => {
                 console.log(res);
                 this.$message.success('登录成功');
+                // 根据登录用户的权限 动态生成路由
+                initRouter();
                 this.router.push({ path: 'home' });
                 this.$store.commit('setRightList', res.data.rights);
                 this.$store.commit('setUserName', res.data.username );
