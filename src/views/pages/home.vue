@@ -30,7 +30,7 @@
                     <template v-for="item in menus" >
                         <a-menu-item :key="item.id" v-if="!item.children">
                             <router-link :to="item.path">
-                                {{ item.authName }}
+                                <span>{{ item.authName }}</span>
                             </router-link>
                         </a-menu-item>
                         <a-sub-menu :key="item.id" v-else>
@@ -40,7 +40,7 @@
                         <template #title>{{ item.authName }}</template>
                             <a-menu-item v-for="child in item.children" :key="child.id">
                                 <router-link :to="child.path">
-                                    {{ child.authName }}
+                                    <span>{{ child.authName }}</span>
                                 </router-link>
                             </a-menu-item>
                             <!-- <a-menu-item key="4">Option 4</a-menu-item> -->
@@ -103,4 +103,10 @@ export default {
     justify-content: space-between;
     align-items: center;
 }
+::v-deep .ant-menu-vertical .ant-menu-submenu, 
+    .ant-menu-vertical-left .ant-menu-submenu, 
+    .ant-menu-vertical-right .ant-menu-submenu, 
+    .ant-menu-inline .ant-menu-submenu {
+        padding-left: 24px;
+    }
 </style>

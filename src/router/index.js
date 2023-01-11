@@ -66,13 +66,7 @@ const router = new Router({
                     )
                 }
             ]
-        }, {
-            // 会匹配所有路径
-            path: '*',
-            component: () => import(
-                /* webpackChunkName: "404" */ '../views/pages/notFound.vue'
-            )
-          }
+        }
     ]
 });
 // 路由导航守卫
@@ -97,9 +91,15 @@ router.beforeEach((to, from, next) => {
         }
     }
 });
-
+const notFound = {
+    // 会匹配所有路径
+    path: '*',
+    component: () => import(
+        /* webpackChunkName: "404" */ '../views/pages/notFound.vue'
+    )
+  };
 export function initRouter() {
-    console.log(router);
+    console.log('initRouter');
     // 处理home下面的子路由
     // 拿到当前的路由组信息
     const currentRoute = router.options.routes; // 修改home下的子路由
@@ -116,7 +116,8 @@ export function initRouter() {
         }
 
     })
-    router.addRoutes(currentRoute)
+    // 添加一条路由新规则，如果存在同名则覆盖
+    router.addRoutes([...currentRoute, notFound])
 }
 
 export default router;

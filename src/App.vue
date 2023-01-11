@@ -6,11 +6,15 @@
 </template>
 
 <script>
+import { initRouter } from '@/router/index.js'
 // import HelloWorld from './components/HelloWorld.vue';
 // import Login from './views/pages/login.vue';
 
 export default {
   name: 'App',
+  created() {
+    initRouter();
+  },
   // components: {
   //   // HelloWorld
   //   Login
