@@ -1,4 +1,5 @@
 import Mock from 'mockjs';
+import productionDada from './productionData.json';
 
 Mock.mock('/login', 'post', function({body}) {
     let params = JSON.parse(body);
@@ -84,4 +85,10 @@ Mock.mock('/login', 'post', function({body}) {
             message: 'failed',
         }
     }
-})
+});
+
+Mock.mock('/productionlist', 'get', function({body}) {
+    console.log(body)
+    console.log(productionDada)
+    return productionDada;
+});

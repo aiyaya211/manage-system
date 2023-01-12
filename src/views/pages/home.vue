@@ -23,7 +23,7 @@
             <!-- 侧边栏 -->
             <a-layout-sider>
                 <a-menu
-                style="width: 256px;height: 100%;"
+                style="width: 200px;height: 100%;"
                 theme="dark"
                 mode="inline"
                 >
@@ -49,13 +49,14 @@
                 </a-menu>
             </a-layout-sider>
             <!-- 内容部分 -->
-            <a-layout-content>
+            <a-layout-content class="right">
                 <!-- 路由内容展示 -->
-                <router-view />
+                <div class="right-main">
+                    <router-view />
+                </div>
             </a-layout-content>
             
         </a-layout>
-        <a-layout-footer>Footer</a-layout-footer>
     </a-layout>
 </template>
 <script>
@@ -109,4 +110,40 @@ export default {
     .ant-menu-inline .ant-menu-submenu {
         padding-left: 24px;
     }
+.main {
+    margin-left: 80px;
+    margin-top: 40px;
+    margin-right: 40px;
+    height: 100%;
+}
+
+.right {
+    background-color: rgb(209, 205, 205);
+    width: calc(100% - 256px);
+    height: 100%;
+ 
+    /* .right-header {
+        background-color: #f5f4f4;
+        width: 100%;
+        height: 50px;
+    } */
+ 
+    /* .right-tab {
+        background-color: #e0dcdc;
+        width: 100%;
+        height: 35px;
+    }
+ 
+    .right-main {
+        background-color: white;
+        width: 100%;
+        height: calc(100% - 50px - 35px);
+    } */
+}
+.right-main {
+        background-color: white;
+        width: calc(100% - 100px);
+        height: calc(100% - 100px);
+        margin: 50px;
+}
 </style>
