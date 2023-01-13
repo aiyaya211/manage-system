@@ -13,10 +13,15 @@
         <a-table :columns="columns" :data-source="tableData" :row-key="record => record.key">
           <template slot="operation">
             <div>
-              <a-button type="primary">
+              <a-button 
+                type="primary"
+                v-persssion="{action: 'edit', isDisabled: true}">
                 编辑
               </a-button>
-              <a-button type="danger" style="margin-left: 5px;">
+              <a-button 
+                type="danger" 
+                style="margin-left: 5px;"
+                v-persssion="{action: 'edit', isDisabled: true}">
                 删除
               </a-button>
             </div>
