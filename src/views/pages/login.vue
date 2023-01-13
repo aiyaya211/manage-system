@@ -44,12 +44,12 @@ export default {
     },
     methods: {
         async handleSubmit() {
-            console.log('登录');
+            // console.log('登录');
             await this.$axios.post('/login', {
                 name: this.formInline.user,
                 password: this.formInline.password,
             }).then((res) => {
-                console.log(res);
+                // console.log(res);
                 this.$message.success('登录成功');
                 // 根据登录用户的权限 动态生成路由
                 initRouter();
@@ -58,7 +58,7 @@ export default {
                 this.$store.commit('setUserName', res.data.username );
                 // 本地存储token
                 sessionStorage.setItem('token', res.data.token);
-                console.log(this.$store)
+                // console.log(this.$store)
             }).catch((err) => {
                 console.log(err)
                 this.$message.error('账号名或者密码错误');

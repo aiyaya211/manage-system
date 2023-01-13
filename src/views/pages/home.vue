@@ -77,7 +77,7 @@ export default {
     },
     methods: {
         exit() {
-            console.log('退出')
+            // console.log('退出')
             // 清空sessionstroage
             sessionStorage.clear();
             // 退出登录

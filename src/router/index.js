@@ -36,9 +36,6 @@ const rightMap = {
     '/productions': productionsRule,
     '/productionCates': productionCatesRule
 };
-console.log(rightMap)
-
-
 
 const router = new Router({
     mode: 'hash',
@@ -71,9 +68,6 @@ const router = new Router({
 });
 // 路由导航守卫
 router.beforeEach((to, from, next) => {
-    console.log(to)
-    console.log(from)
-    console.log(next)
     // 判断下一步的路径是哪里
     // 如果是登录则下一步
     if (to.path === '/login' || to.path === '/') {
@@ -105,12 +99,13 @@ export function initRouter() {
     const currentRoute = router.options.routes; // 修改home下的子路由
     // 修改children
     const rightList = store.state.rightList;
+    console.log(rightList)
     
     rightList.forEach((item) => {
         if(item.children) {
             item.children.forEach(childItem => {
-                console.log(childItem)
                 let temp = rightMap[childItem.path];
+                temp.meta = childItem?.right;
                 currentRoute[2].children.push(temp)
             })
         }

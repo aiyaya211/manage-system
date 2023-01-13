@@ -6,6 +6,7 @@ import 'ant-design-vue/dist/antd.css'; // or 'ant-design-vue/dist/antd.less'
 import './mock/mockServer'; // mock数据
 import './utils/http';
 import store from '@/store';
+import './utils/perssion'
 
 Vue.use(antUI);
 Vue.config.productionTip = false

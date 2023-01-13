@@ -2,7 +2,11 @@
     <div class="page">
         <div class="search">
             <a-input-search placeholder="输入商品内容" style="width: 200px" />
-            <a-button type="primary" style="margin-left: 5px">
+            <a-button 
+              type="primary" 
+              style="margin-left: 5px"
+              v-persssion="{action: 'add'}"
+              >
                 添加商品
             </a-button>
         </div>

@@ -41,7 +41,8 @@ Mock.mock('/login', 'post', function({body}) {
                 children: [{
                     id: 30,
                     authName: "商品列表",
-                    path: '/productions'
+                    path: '/productions',
+                    right: ['edit', 'add', 'delete']
                 }, {
                     id: 31,
                     authName: "商品分类",
@@ -75,7 +76,8 @@ Mock.mock('/login', 'post', function({body}) {
                 children: [{
                     id: 30,
                     authName: "商品列表",
-                    path: '/productions'
+                    path: '/productions',
+                    right: []
                 }]
             }]
         }
