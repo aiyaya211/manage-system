@@ -4,9 +4,9 @@ import router from '../router/index'
 Vue.directive('persssion', {
     // 当被绑定的元素插入到 DOM 中时……
     inserted: function (el, binding) {
-      console.log(el)
-      console.log(binding)
-      console.log(router.currentRoute)
+    //   console.log(el)
+    //   console.log(binding)
+    //   console.log(router.currentRoute)
       // 获取当前路由
       const currentRoute = router.currentRoute;
       const action = binding?.value?.action;
