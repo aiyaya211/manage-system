@@ -7,6 +7,11 @@ import './mock/mockServer'; // mock数据
 import './utils/http';
 import store from '@/store';
 import './utils/perssion'
+import Router from 'vue-router'
+const routerPush = Router.prototype.push
+Router.prototype.push = function push(location) {
+  return routerPush.call(this, location).catch(error=> error)
+}
 
 Vue.use(antUI);
 Vue.config.productionTip = false

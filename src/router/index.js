@@ -67,14 +67,16 @@ const router = new Router({
     ]
 });
 // 路由导航守卫
+// 逻辑写的有问题
 router.beforeEach((to, from, next) => {
+    console.log(111)
     // 判断下一步的路径是哪里
     // 如果是登录则下一步
     if (to.path === '/login' || to.path === '/') {
         next();
     } else {
-        const token = sessionStorage.getItem('token');
         // 判断是否登录过 token
+        const token = sessionStorage.getItem('token');
         console.log(token)
         if (token) {
             next();
@@ -82,6 +84,7 @@ router.beforeEach((to, from, next) => {
             // 没有登录过就回到登录页面
             // this.$message.warning('请先登录');
             next('/login')
+            return;
         }
     }
 });
