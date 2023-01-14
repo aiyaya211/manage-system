@@ -25,10 +25,10 @@ axios.interceptors.request.use(function (config) {
         const rightList = router.currentRoute.meta;
         console.log(rightList)
         // 若当前操作不属于用户操作权限
-        // if(!rightList || (rightList && rightList.indexOf(action) < 0)) {
-        //     alert('没有权限，请检查');
-        //     return false;
-        // }
+        if(!rightList || (rightList && rightList.indexOf(action) < 0)) {
+            alert('没有权限，请检查');
+            return false;
+        }
     }
     return config;
   }, function (error) {

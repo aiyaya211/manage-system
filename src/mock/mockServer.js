@@ -16,6 +16,7 @@ Mock.mock('/login', 'post', function({body}) {
                 id: 100,
                 authName: "我的首页",
                 path: '/home',
+                right: ['view']
             }, {
                 id: 101,
                 authName: "用户管理",
@@ -23,7 +24,8 @@ Mock.mock('/login', 'post', function({body}) {
                 children: [{
                     id: 10,
                     authName: "用户列表",
-                    path: '/users'
+                    path: '/users',
+                    right: ['view']
                 }]
             }, {
                 id: 102,
@@ -32,7 +34,8 @@ Mock.mock('/login', 'post', function({body}) {
                 children: [{
                     id: 20,
                     authName: "角色列表",
-                    path: '/roles'
+                    path: '/roles',
+                    right: ['view']
                 }]
             }, {
                 id: 103,
@@ -42,11 +45,12 @@ Mock.mock('/login', 'post', function({body}) {
                     id: 30,
                     authName: "商品列表",
                     path: '/productions',
-                    right: ['edit', 'add', 'delete']
+                    right: ['edit', 'add', 'delete', 'view']
                 }, {
                     id: 31,
                     authName: "商品分类",
-                    path: '/productionCates'
+                    path: '/productionCates',
+                    right: ['view']
                 }]
             }]
         }
@@ -60,6 +64,7 @@ Mock.mock('/login', 'post', function({body}) {
                 id: 100,
                 authName: "我的首页",
                 path: '/home',
+                right: ['view']
             },  {
                 id: 101,
                 authName: "用户管理",
@@ -67,7 +72,8 @@ Mock.mock('/login', 'post', function({body}) {
                 children: [{
                     id: 10,
                     authName: "用户列表",
-                    path: '/users'
+                    path: '/users',
+                    right: ['view'],
                 }]
             }, {
                 id: 103,
@@ -77,7 +83,7 @@ Mock.mock('/login', 'post', function({body}) {
                     id: 30,
                     authName: "商品列表",
                     path: '/productions',
-                    right: []
+                    right: ['view']
                 }]
             }]
         }
