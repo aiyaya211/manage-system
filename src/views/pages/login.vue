@@ -51,14 +51,15 @@ export default {
             }).then((res) => {
                 // console.log(res);
                 this.$message.success('登录成功');
+                
+               
+                this.$store.commit('setRightList', res.data.rights);
+                this.$store.commit('setUserName', res.data.username );
+                // 本地存储token
                 sessionStorage.setItem('token', res.data.token);
                 // 根据登录用户的权限 动态生成路由
                 initRouter();
                 this.router.push({ path: 'home' });
-                this.$store.commit('setRightList', res.data.rights);
-                this.$store.commit('setUserName', res.data.username );
-                // 本地存储token
-                
                 // console.log(this.$store)
             }).catch((err) => {
                 console.log(err)
