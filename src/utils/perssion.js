@@ -22,6 +22,5 @@ Vue.directive('persssion', {
             el.parentNode.removeChild(el);
         }
       }
-
     }
   })
