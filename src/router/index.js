@@ -67,7 +67,6 @@ const router = new Router({
     ]
 });
 // 路由导航守卫
-// 逻辑写的有问题
 router.beforeEach((to, from, next) => {
     console.log(111)
     // 判断下一步的路径是哪里
