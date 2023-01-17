@@ -274,7 +274,7 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
         'post': 'add', // 增
         'put': 'edit' // 改
     };
-    // 拦截器
+    // 拦截器11
     // 当前请求的类型
     const method = config.method;
     const action = methodMaps[method];
